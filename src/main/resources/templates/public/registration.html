@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pl"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Portfel Haseł</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        .validation-message{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+    <a id="backBtn" class="btn btn-dark" href="/login" style="margin-top: 10px;">Powrót</a>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h2>Rejestracja użytkownika</h2>
+            <h4>Wprowadź dane:</h4>
+            <form autocomplete="off" action="#" th:action="@{/register}"
+                  th:object="${user}" method="post" class="form-horizontal"
+                  role="form">
+                <div class="form-group">
+                    <div>
+                        Imię:
+                        <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                               class="validation-message"></label>
+                        <input id="name" type="text" th:field="*{name}" placeholder="Jan"
+                               class="form-control" required/><br/>
+                        Nazwisko:
+                        <label  th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                               class="validation-message"></label>
+                        <input id="lastName" type="text" th:field="*{lastName}"
+                               placeholder="Kowalski" class="form-control" required/><br/>
+                        Adres e-mail:
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                               class="validation-message"></label>
+                        <input id="email" type="text" th:field="*{email}" placeholder="np. jankowalski@gmail.com"
+                               class="form-control" required/><br/>
+                        Hasło:
+                        <label th:if="${#fields.hasErrors('chosenPassword')}" th:errors="*{chosenPassword}"
+                               class="validation-message"></label>
+                        <input id="password" type="password" th:field="*{chosenPassword}" placeholder="**********"
+                               class="form-control" required/><br/>
+
+                        <div class="form-group">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="SHA512" name="SHA512" class="custom-control-input" value="SHA512" th:field="*{chosenEncodingMethod}" checked>
+                                <label class="custom-control-label" for="SHA512">SHA512</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="HMAC" name="HMAC" class="custom-control-input" value="HMAC" th:field="*{chosenEncodingMethod}">
+                                <label class="custom-control-label" for="HMAC">HMACSHA512</label>
+                            </div>
+                        </div>
+
+                        <button id="submitBtn" type="submit" class="btn btn-primary btn-block">Zarejestruj</button>
+                        <button type="reset" class="btn btn-primary btn-block">Anuluj</button>
+                    </div>
+                </div>
+
+                <div th:if="${successMessage!=null}" style="text-align: center;" class="alert alert-success alert-dismissible fade show" role="alert">
+                    <span class="text-success" th:utext="${successMessage}"></span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+document.getElementById("SHA512").setAttribute("checked","checked")
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>

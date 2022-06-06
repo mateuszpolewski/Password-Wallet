@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Portfel haseł</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        .form-signin-heading{
+            text-align: center;
+
+        }
+        .container {
+        padding-top: 40px;
+        }
+        a{
+            margin-top:20px;
+        }
+
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <a class="btn btn-danger" href="/logout" style="margin-top: 10px;">Wyloguj</a>
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <a id="addPasswordBtn" class="btn btn-lg btn-primary btn-block" href="/user/add-password" role="button">Dodaj hasło</a><br>
+            <a id="viewPasswordsBtn" class="btn btn-lg btn-primary btn-block" href="/user/view-passwords" role="button">Wyświetl hasła</a><br>
+            <a id="changePasswordBtn" href="/user/change-password" role="button">Zmień hasło</a>
+        </div>
+        <div style="margin: auto;">
+            <br>
+            <p style="color: green;" th:text="${successfulLogin}"></p>
+            <p style="color: red;" th:text="${failedLogin}"></p>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+
+</body>
+</html>

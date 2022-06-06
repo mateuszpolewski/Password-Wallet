@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Portfel haseł</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <style>
+        td {
+            text-align:center;
+        }
+        .userTable {
+            width:1400px;
+            text-align:center;
+            padding: 15px;
+        }
+        .passwordText {
+
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <a class="btn btn-danger" href="/logout" style="margin-top: 10px;">Wyloguj</a>
+    <div class="row">
+        <div class="userTable">
+            <table class="table table-striped">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col">Imię</th>
+                    <th scope="col">Nazwisko</th>
+                    <th scope="col">Email</th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <th:block th:each="user : ${users}" >
+                    <tr th:id="'user' + ${user.id}">
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.lastName}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td><a class="link-buttons" th:href="@{/user/home/{id}(id=${user.id})}">Odblokuj konto</a></td>
+                    </tr>
+                </th:block>
+            </table>
+        </div>
+        <div style="margin: auto;">
+            <br>
+            <p style="color: green;" th:text="${successfulLogin}"></p>
+            <p style="color: red;" th:text="${failedLogin}"></p>
+        </div>
+    </div>
+
+</div>
+<script>
+function func(id) {
+
+  var x = document.getElementById('walletPassword' + id + 'text');
+  if (x.style.backgroundColor === "#FFFF00") {
+    x.style.backgroundColor  = "black";
+  } else {
+    x.style.backgroundColor  = "#FFFF00";
+  }
+}
+</script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+</body>
+</html>
